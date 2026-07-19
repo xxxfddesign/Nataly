@@ -10,7 +10,7 @@ export default function AboutPage() {
   return (
     <div className="px-6 pb-28 pt-32 lg:px-10">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 lg:grid-cols-[380px_1fr]">
-        <AnimatedReveal effect="scale" className="mx-auto lg:sticky lg:top-32 lg:mx-0 lg:self-start">
+        <AnimatedReveal effect="scale" className="mx-auto lg:mx-0 lg:self-start">
           <div className="relative w-72 sm:w-80">
             <Image
               src="/images/portrait-natalia.png"
