@@ -7,7 +7,7 @@ export const metadata = { title: "Каталог — Art by Natalia" };
 export default function CatalogPage() {
   return (
     <div className="relative overflow-hidden px-6 pb-28 pt-32 lg:px-10">
-      <div className="pointer-events-none absolute -top-6 right-0 hidden w-52 opacity-40 lg:block">
+      <div className="pointer-events-none absolute top-28 right-0 hidden w-52 opacity-40 lg:block">
         <Image src="/images/deco-bust-light.png" alt="" width={262} height={354} className="w-full" />
       </div>
       <div className="mx-auto max-w-7xl">

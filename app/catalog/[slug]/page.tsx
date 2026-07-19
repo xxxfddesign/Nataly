@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ImageOff, Instagram, MessageCircle } from "lucide-react";
 import { Artwork, seedArtworks } from "@/lib/artworks";
+import { formatPrice } from "@/lib/format";
 import { store } from "@/lib/admin-store";
 import { links } from "@/lib/site-config";
 import { AnimatedReveal } from "@/components/AnimatedReveal";
@@ -56,7 +57,7 @@ export default function ProductPage() {
               )}
             </div>
             {artwork.images.length > 1 && (
-              <div className="mt-4 flex gap-3">
+              <div className="mt-4 flex flex-wrap gap-3">
                 {artwork.images.map((img, i) => (
                   <button
                     key={img + i}
@@ -76,7 +77,7 @@ export default function ProductPage() {
             <p className="mb-3 font-body text-xs uppercase tracking-widest2 text-gold-500">{artwork.category}</p>
             <h1 className="font-display text-4xl leading-tight sm:text-5xl">{artwork.title}</h1>
             <p className="mt-6 font-display text-3xl text-gold-500">
-              {artwork.price ? `$${artwork.price}` : "Цена по запросу"}
+              {formatPrice(artwork.price)}
             </p>
 
             <GoldDivider className="my-8" />

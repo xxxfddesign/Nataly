@@ -16,7 +16,7 @@ export function CatalogGrid() {
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<Sort>("new");
   const [availability, setAvailability] = useState<Availability>("all");
-  const [maxPrice, setMaxPrice] = useState<number>(5000);
+  const [maxPrice, setMaxPrice] = useState<number>(1000000);
 
   useEffect(() => {
     setArtworks(store.getArtworks());
@@ -91,12 +91,14 @@ export function CatalogGrid() {
 
         <label className="flex items-center gap-3 rounded-xl border border-gold-400/20 px-4 py-2.5 text-sm">
           <SlidersHorizontal size={14} className="text-gold-500" />
-          <span className="whitespace-nowrap text-xs text-ink/60 dark:text-parchment/60">до ${maxPrice}</span>
+          <span className="whitespace-nowrap text-xs text-ink/60 dark:text-parchment/60">
+            до {new Intl.NumberFormat("ru-RU").format(maxPrice)} ₸
+          </span>
           <input
             type="range"
-            min={50}
-            max={5000}
-            step={50}
+            min={10000}
+            max={1000000}
+            step={10000}
             value={maxPrice}
             onChange={(e) => setMaxPrice(Number(e.target.value))}
             className="w-full accent-gold-500"

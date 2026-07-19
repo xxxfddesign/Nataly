@@ -1,11 +1,13 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { useTheme } from "next-themes";
 
-// Едва заметная золотая пыль, дрейфующая по фону. Работает и в светлой,
-// и в тёмной теме — цвет частиц один и тот же (тёплое золото), меняется
-// только их прозрачность, чтобы не спорить с фоном.
+// Живая золотая пыль на фоне. В тёмной теме — тёплое золото на чёрном.
+// В светлой теме тон делаем более насыщенным и добавляем едва заметное
+// сияние вокруг части частиц, иначе золото "теряется" на светлом фоне.
 export function ParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -16,18 +18,25 @@ export function ParticleField() {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const count = prefersReduced ? 0 : Math.min(70, Math.floor((width * height) / 22000));
+    const isDark = resolvedTheme === "dark";
+    const baseColor = isDark ? "201, 162, 76" : "150, 108, 34";
 
-    const particles = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: Math.random() * 1.6 + 0.4,
-      speedY: Math.random() * 0.15 + 0.03,
-      speedX: (Math.random() - 0.5) * 0.08,
-      alpha: Math.random() * 0.35 + 0.08,
-      twinkle: Math.random() * Math.PI * 2,
-    }));
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const count = prefersReduced ? 0 : Math.min(110, Math.floor((width * height) / 15000));
+
+    const particles = Array.from({ length: count }, () => {
+      const big = Math.random() > 0.85;
+      return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: big ? Math.random() * 2 + 1.8 : Math.random() * 1.4 + 0.4,
+        glow: big,
+        speedY: Math.random() * 0.16 + 0.03,
+        speedX: (Math.random() - 0.5) * 0.09,
+        alpha: (big ? 0.5 : 0.4) * (Math.random() * 0.6 + (isDark ? 0.4 : 0.55)),
+        twinkle: Math.random() * Math.PI * 2,
+      };
+    });
 
     let frame: number;
     const render = () => {
@@ -41,9 +50,21 @@ export function ParticleField() {
         if (p.x > width + 10) p.x = -10;
 
         const flicker = (Math.sin(p.twinkle) + 1) / 2;
+        const a = p.alpha * (0.5 + flicker * 0.5);
+
+        if (p.glow) {
+          const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 5);
+          gradient.addColorStop(0, `rgba(${baseColor}, ${a * 0.5})`);
+          gradient.addColorStop(1, `rgba(${baseColor}, 0)`);
+          ctx.beginPath();
+          ctx.fillStyle = gradient;
+          ctx.arc(p.x, p.y, p.r * 5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(201, 162, 76, ${p.alpha * (0.5 + flicker * 0.5)})`;
+        ctx.fillStyle = `rgba(${baseColor}, ${a})`;
         ctx.fill();
       }
       frame = requestAnimationFrame(render);
@@ -60,12 +81,12 @@ export function ParticleField() {
       cancelAnimationFrame(frame);
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [resolvedTheme]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-70"
+      className="pointer-events-none fixed inset-0 z-0 h-full w-full opacity-80"
       aria-hidden="true"
     />
   );

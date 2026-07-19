@@ -26,7 +26,7 @@ export function Hero() {
             transition={{ delay: 0.3, duration: 0.7 }}
             className="mb-5 font-body text-xs uppercase tracking-widest2 text-gold-500"
           >
-            Наталья Шелко · Художник и скульптор
+            Наталья Калугина (Шилко) · Художник и скульптор
           </motion.p>
 
           <motion.h1
@@ -115,16 +115,6 @@ export function Hero() {
           </motion.div>
         </motion.div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8 }}
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-widest2 text-ink/40 dark:text-parchment/40 sm:flex"
-      >
-        <span>Scroll</span>
-        <span className="h-10 w-px animate-pulse bg-gold-400/60" />
-      </motion.div>
     </section>
   );
 }

@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ParticleField } from "@/components/ParticleField";
+import { AmbientGlow } from "@/components/AmbientGlow";
 import { IntroLoader } from "@/components/IntroLoader";
 import { PageTransition } from "@/components/PageTransition";
 import { Chatbot } from "@/components/Chatbot";
@@ -29,9 +30,9 @@ const parisienne = Parisienne({
 });
 
 export const metadata: Metadata = {
-  title: "Art by Natalia — Наталья Шелко | Художник и скульптор",
+  title: "Art by Natalia — Наталья Калугина (Шилко) | Художник и скульптор",
   description:
-    "Персональная художественная галерея Натальи Шелко: живопись, скульптура и авторские работы. Каталог, выставки, контакты.",
+    "Персональная художественная галерея Натальи Калугиной (Шилко): живопись, скульптура и авторские работы. Каталог, выставки, контакты.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${playfair.variable} ${manrope.variable} ${parisienne.variable} font-body`}>
         <ThemeProvider>
           <IntroLoader />
+          <AmbientGlow />
           <ParticleField />
           <Header />
           <main className="relative z-10">

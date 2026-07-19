@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode } from "react";
-import { Instagram, MessageCircle, Phone, Mail } from "lucide-react";
+import { Instagram, MessageCircle, Phone } from "lucide-react";
 import { links } from "@/lib/site-config";
 
 const base =
@@ -16,8 +16,8 @@ export function ContactButtons({ variant = "icons" }: { variant?: "icons" | "ful
         <a href={links.instagram()} target="_blank" rel="noopener noreferrer" aria-label="Открыть Instagram" className={base}>
           <Instagram size={20} />
         </a>
-        <a href={links.email()} aria-label="Написать письмо" className={base}>
-          <Mail size={20} />
+        <a href={links.phone()} aria-label="Позвонить" className={base}>
+          <Phone size={20} />
         </a>
       </div>
     );
@@ -28,7 +28,6 @@ export function ContactButtons({ variant = "icons" }: { variant?: "icons" | "ful
       <ContactRow icon={<MessageCircle size={20} />} label="WhatsApp" href={links.whatsapp()} />
       <ContactRow icon={<Instagram size={20} />} label="Instagram" href={links.instagram()} />
       <ContactRow icon={<Phone size={20} />} label="Телефон" href={links.phone()} />
-      <ContactRow icon={<Mail size={20} />} label="Email" href={links.email()} />
     </div>
   );
 }

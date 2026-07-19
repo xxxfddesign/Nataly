@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { FlourishDivider } from "./FlourishDivider";
 
 const NAV = [
   { href: "/", label: "Главная" },
@@ -19,11 +20,11 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-gold-400/10 bg-ivory/80 backdrop-blur-md transition-colors duration-500 dark:bg-graphite/80">
+    <header className="fixed inset-x-0 top-0 z-50 bg-ivory/95 shadow-[0_1px_0_0_rgba(184,147,74,0.25),0_12px_30px_-18px_rgba(184,147,74,0.55)] backdrop-blur-md transition-colors duration-500 dark:bg-graphite/95 dark:shadow-[0_1px_0_0_rgba(201,162,76,0.18),0_12px_30px_-18px_rgba(201,162,76,0.35)]">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
-        <Link href="/" className="flex items-center gap-3">
-          <Image src="/images/logo.png" alt="Art by Natalia" width={44} height={44} className="h-11 w-11 object-contain" priority />
-          <span className="font-signature text-2xl leading-none text-gold-500">Art by Natalia</span>
+        <Link href="/" className="flex items-center gap-2 sm:gap-3">
+          <Image src="/images/logo.png" alt="Art by Natalia" width={44} height={44} className="h-9 w-9 object-contain sm:h-11 sm:w-11" priority />
+          <span className="font-signature text-lg leading-none text-gold-500 sm:text-2xl">Art by Natalia</span>
         </Link>
 
         <nav className="hidden items-center gap-9 lg:flex">
@@ -46,7 +47,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <ThemeToggle />
           <button
             aria-label="Открыть меню"
@@ -56,6 +57,10 @@ export function Header() {
             <Menu size={24} />
           </button>
         </div>
+      </div>
+
+      <div className="pointer-events-none absolute inset-x-0 -bottom-3 flex justify-center">
+        <FlourishDivider variant={1} className="max-w-[220px] opacity-80" />
       </div>
 
       <AnimatePresence>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ImageOff } from "lucide-react";
 import { Artwork } from "@/lib/artworks";
+import { formatPrice } from "@/lib/format";
 
 export function CatalogCard({ artwork, index = 0 }: { artwork: Artwork; index?: number }) {
   const image = artwork.images[0];
@@ -49,7 +50,7 @@ export function CatalogCard({ artwork, index = 0 }: { artwork: Artwork; index?: 
             <p className="text-sm text-ink/50 dark:text-parchment/50">{artwork.year} · {artwork.material}</p>
           </div>
           <p className="whitespace-nowrap font-display text-lg text-gold-500">
-            {artwork.price ? `$${artwork.price}` : "По запросу"}
+            {formatPrice(artwork.price)}
           </p>
         </div>
       </Link>

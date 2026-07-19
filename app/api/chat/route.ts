@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { siteConfig } from "@/lib/site-config";
 import { seedArtworks } from "@/lib/artworks";
+import { formatPrice } from "@/lib/format";
 import { aboutContent } from "@/lib/about-content";
 
 // Прокси к Groq (groq.com — быстрый инференс открытых моделей, например Llama).
@@ -24,9 +25,9 @@ export async function POST(req: NextRequest) {
   const catalogSummary = seedArtworks
     .map(
       (a) =>
-        `- ${a.title} (${a.category}, ${a.year}): материал ${a.material}, размер ${a.size}, вес ${a.weight}, статус ${a.status}, цена ${
-          a.price ? `$${a.price}` : "по запросу"
-        }`
+        `- ${a.title} (${a.category}, ${a.year}): материал ${a.material}, размер ${a.size}, вес ${a.weight}, статус ${a.status}, цена ${formatPrice(
+          a.price
+        )}`
     )
     .join("\n");
 

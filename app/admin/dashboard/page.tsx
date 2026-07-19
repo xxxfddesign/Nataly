@@ -5,6 +5,7 @@ import {
   LogOut, Plus, Trash2, Save, Upload, Download, ImagePlus, X,
 } from "lucide-react";
 import { store, HeroContent } from "@/lib/admin-store";
+import { formatPrice } from "@/lib/format";
 import { Artwork, ArtworkCategory, ArtworkStatus } from "@/lib/artworks";
 import { siteConfig } from "@/lib/site-config";
 
@@ -180,7 +181,7 @@ export default function AdminDashboard() {
                   <div>
                     <p className="font-display text-lg">{a.title}</p>
                     <p className="text-sm text-ink/50 dark:text-parchment/50">
-                      {a.category} · {a.status} · {a.price ? `$${a.price}` : "цена по запросу"} · {a.images.length} фото
+                      {a.category} · {a.status} · {formatPrice(a.price)} · {a.images.length} фото
                     </p>
                   </div>
                   <div className="flex gap-2">
@@ -234,7 +235,7 @@ export default function AdminDashboard() {
               <Field label="Год">
                 <input type="number" className="input" value={editing.year} onChange={(e) => setEditing({ ...editing, year: Number(e.target.value) })} />
               </Field>
-              <Field label="Цена, $ (пусто = по запросу)">
+              <Field label="Цена, ₸ (пусто = по запросу)">
                 <input
                   type="number"
                   className="input"

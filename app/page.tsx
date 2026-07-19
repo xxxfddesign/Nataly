@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Hero } from "@/components/Hero";
 import { AnimatedReveal } from "@/components/AnimatedReveal";
 import { GoldDivider } from "@/components/GoldDivider";
+import { FlourishDivider } from "@/components/FlourishDivider";
 import { CatalogCard } from "@/components/CatalogCard";
 import { seedArtworks } from "@/lib/artworks";
 import { aboutContent } from "@/lib/about-content";
@@ -14,8 +15,10 @@ export default function HomePage() {
     <>
       <Hero />
 
+      <FlourishDivider variant={2} className="max-w-sm pt-6" />
+
       {/* О художнике — краткий блок */}
-      <section className="relative overflow-hidden px-6 py-28 lg:px-10">
+      <section className="relative overflow-hidden px-6 pb-28 pt-10 lg:px-10">
         <div className="pointer-events-none absolute -right-10 top-10 hidden w-40 opacity-30 lg:block">
           <Image src="/images/deco-column.png" alt="" width={172} height={512} className="w-full" />
         </div>
