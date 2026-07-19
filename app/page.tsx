@@ -4,7 +4,6 @@ import { ArrowRight } from "lucide-react";
 import { Hero } from "@/components/Hero";
 import { AnimatedReveal } from "@/components/AnimatedReveal";
 import { GoldDivider } from "@/components/GoldDivider";
-import { FlourishDivider } from "@/components/FlourishDivider";
 import { CatalogCard } from "@/components/CatalogCard";
 import { seedArtworks } from "@/lib/artworks";
 import { aboutContent } from "@/lib/about-content";
@@ -14,8 +13,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-
-      <FlourishDivider variant={2} className="max-w-sm pt-6" />
 
       {/* О художнике — краткий блок */}
       <section className="relative overflow-hidden px-6 pb-28 pt-10 lg:px-10">

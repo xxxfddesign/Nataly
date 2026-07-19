@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
-import { FlourishDivider } from "./FlourishDivider";
 
 const NAV = [
   { href: "/", label: "Главная" },
@@ -57,10 +56,6 @@ export function Header() {
             <Menu size={24} />
           </button>
         </div>
-      </div>
-
-      <div className="pointer-events-none absolute inset-x-0 -bottom-3 flex justify-center">
-        <FlourishDivider variant={1} className="max-w-[220px] opacity-80" />
       </div>
 
       <AnimatePresence>
