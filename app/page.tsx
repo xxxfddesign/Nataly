@@ -1,0 +1,113 @@
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Hero } from "@/components/Hero";
+import { AnimatedReveal } from "@/components/AnimatedReveal";
+import { GoldDivider } from "@/components/GoldDivider";
+import { CatalogCard } from "@/components/CatalogCard";
+import { seedArtworks } from "@/lib/artworks";
+import { aboutContent } from "@/lib/about-content";
+import { siteConfig } from "@/lib/site-config";
+
+export default function HomePage() {
+  return (
+    <>
+      <Hero />
+
+      {/* О художнике — краткий блок */}
+      <section className="relative overflow-hidden px-6 py-28 lg:px-10">
+        <div className="pointer-events-none absolute -right-10 top-10 hidden w-40 opacity-30 lg:block">
+          <Image src="/images/deco-column.png" alt="" width={172} height={512} className="w-full" />
+        </div>
+
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
+          <AnimatedReveal effect="slide">
+            <div className="relative mx-auto w-72 sm:w-80">
+              <Image
+                src="/images/portrait-natalia.png"
+                alt={siteConfig.artistName}
+                width={500}
+                height={500}
+                className="w-full drop-shadow-2xl"
+              />
+            </div>
+          </AnimatedReveal>
+
+          <AnimatedReveal effect="slide" delay={0.15}>
+            <p className="mb-4 font-body text-xs uppercase tracking-widest2 text-gold-500">Об авторе</p>
+            <h2 className="font-display text-4xl leading-tight sm:text-5xl">{aboutContent.heading}</h2>
+            <p className="mt-6 max-w-xl font-body text-lg leading-relaxed text-ink/70 dark:text-parchment/70">
+              {aboutContent.intro}
+            </p>
+            <p className="mt-4 max-w-xl font-signature text-2xl text-gold-500">“{aboutContent.quote}”</p>
+
+            <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
+              {siteConfig.stats.map((s) => (
+                <div key={s.label}>
+                  <p className="font-display text-3xl text-gold-500">{s.value}</p>
+                  <p className="text-xs uppercase tracking-widest2 text-ink/50 dark:text-parchment/50">{s.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <Link
+              href="/about"
+              className="mt-10 inline-flex items-center gap-2 font-body text-sm uppercase tracking-wider text-gold-500 transition-colors hover:text-gold-600"
+            >
+              Читать историю полностью
+              <ArrowRight size={16} />
+            </Link>
+          </AnimatedReveal>
+        </div>
+      </section>
+
+      <GoldDivider className="mx-auto max-w-4xl" />
+
+      {/* Каталог — превью */}
+      <section className="relative px-6 py-28 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <AnimatedReveal effect="fade" className="mb-14 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <p className="mb-3 font-body text-xs uppercase tracking-widest2 text-gold-500">Избранное</p>
+              <h2 className="font-display text-4xl sm:text-5xl">Каталог работ</h2>
+            </div>
+            <Link
+              href="/catalog"
+              className="inline-flex items-center gap-2 rounded-full border border-gold-400/40 px-6 py-3 text-sm uppercase tracking-wider transition-colors hover:border-gold-400 hover:bg-gold-400/10"
+            >
+              Весь каталог <ArrowRight size={15} />
+            </Link>
+          </AnimatedReveal>
+
+          <div className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+            {seedArtworks.map((a, i) => (
+              <CatalogCard artwork={a} index={i} key={a.id} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Приглашение к контакту */}
+      <section className="relative overflow-hidden px-6 py-28 lg:px-10">
+        <div className="pointer-events-none absolute -bottom-10 left-1/2 w-72 -translate-x-1/2 opacity-25 lg:w-[30rem]">
+          <Image src="/images/deco-wave.png" alt="" width={601} height={160} className="w-full" />
+        </div>
+        <AnimatedReveal effect="scale" className="relative mx-auto max-w-3xl text-center">
+          <h2 className="font-display text-4xl leading-tight sm:text-5xl">
+            Искусство создаёт <span className="gold-text">бессмертие</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl font-body text-lg text-ink/70 dark:text-parchment/70">
+            Каждая работа — приглашение остановиться. Если что-то откликнулось —
+            напишите, и мы расскажем об этой работе подробнее.
+          </p>
+          <Link
+            href="/contacts"
+            className="mt-10 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 bg-[length:200%_auto] px-8 py-4 font-body text-sm font-semibold uppercase tracking-wider text-graphite shadow-gold transition-all duration-500 hover:bg-right"
+          >
+            Связаться со мной <ArrowRight size={16} />
+          </Link>
+        </AnimatedReveal>
+      </section>
+    </>
+  );
+}

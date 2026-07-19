@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ivory text-ink dark:bg-graphite dark:text-parchment;
+  transition: background-color 500ms var(--ease-lux), color 500ms var(--ease-lux);
+}
+
+::selection {
+  background: rgba(184, 147, 74, 0.35);
+  color: inherit;
+}
+
+/* Тонкий скроллбар в золотых тонах */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c9a24c, #7a5e2a);
+  border-radius: 999px;
+}
+
+:focus-visible {
+  outline: 2px solid #c9a24c;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.gold-hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184, 147, 74, 0.6), transparent);
+}
+
+.gold-text {
+  background: linear-gradient(90deg, #9c7a38, #e8c97a 40%, #b8934a 60%, #9c7a38);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.crack-divider {
+  position: relative;
+}
+.crack-divider::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="20" viewBox="0 0 200 20"><path d="M0 10 L30 12 L45 4 L60 14 L80 8 L100 15 L120 6 L140 12 L160 5 L180 13 L200 9" stroke="%23B8934A" stroke-width="1" fill="none" opacity="0.5"/></svg>');
+  background-repeat: repeat-x;
+  background-size: 200px 20px;
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
