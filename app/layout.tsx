@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Manrope, Parisienne } from "next/font/google";
+import { Playfair_Display, Manrope, Parisienne } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
@@ -9,10 +9,10 @@ import { IntroLoader } from "@/components/IntroLoader";
 import { PageTransition } from "@/components/PageTransition";
 import { Chatbot } from "@/components/Chatbot";
 
-const fraunces = Fraunces({
+const playfair = Playfair_Display({
   subsets: ["latin", "latin-ext", "cyrillic"],
-  variable: "--font-fraunces",
-  weight: ["400", "500", "600"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
 });
 
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" suppressHydrationWarning>
-      <body className={`${fraunces.variable} ${manrope.variable} ${parisienne.variable} font-body`}>
+      <body className={`${playfair.variable} ${manrope.variable} ${parisienne.variable} font-body`}>
         <ThemeProvider>
           <IntroLoader />
           <ParticleField />

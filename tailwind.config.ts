@@ -34,7 +34,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["var(--font-fraunces)", "serif"],
+        display: ["var(--font-display)", "serif"],
         body: ["var(--font-manrope)", "sans-serif"],
         signature: ["var(--font-signature)", "cursive"],
       },

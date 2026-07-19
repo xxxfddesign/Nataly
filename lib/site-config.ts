@@ -7,7 +7,7 @@ export const siteConfig = {
   brandName: "Art by Natalia",
   tagline: "Искусство вдохновляет жизнь",
   whatsapp: "77018926907", // без + и пробелов
-  instagram: "artist_natalia", // без @
+  instagram: "kalugina_shchuchinsk_burabay", // без @
   phone: "+7 701 892 69 07",
   email: "kalugina.geolog2015@mail.ru",
   address: "г. Щучинск, Бурабайский район, ул. Школьная, 35",
