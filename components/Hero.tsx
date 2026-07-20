@@ -74,7 +74,7 @@ export function Hero() {
         </div>
 
         <motion.div
-          className="relative order-1 lg:order-2"
+          className="relative order-1 lg:order-2 lg:-translate-y-6"
           initial={{ opacity: 0, scale: 1.12 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}

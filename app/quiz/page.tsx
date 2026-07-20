@@ -124,14 +124,18 @@ export default function QuizPage() {
 
   return (
     <div className="relative overflow-hidden px-6 pb-28 pt-32 lg:px-10">
-      <div className="pointer-events-none absolute -right-10 top-16 w-40 opacity-25 lg:w-56">
-        <Image src="/images/deco-statue-fragment.png" alt="" width={266} height={270} className="w-full" />
+      {/* Лавровые ветви по краям — слева и справа, зеркально */}
+      <div className="pointer-events-none absolute -left-8 top-10 w-28 -rotate-12 opacity-30 sm:w-36 lg:-left-6 lg:w-48">
+        <Image src="/images/deco-laurel-gold.png" alt="" width={255} height={200} className="w-full" />
       </div>
-      <div className="pointer-events-none absolute -left-10 bottom-10 w-32 -rotate-6 opacity-40 lg:w-48">
-        <Image src="/images/deco-laurel-branch.png" alt="" width={294} height={284} className="w-full" />
+      <div className="pointer-events-none absolute -left-10 bottom-8 hidden w-32 rotate-[150deg] opacity-25 sm:block lg:-left-8 lg:w-44">
+        <Image src="/images/deco-laurel-gold.png" alt="" width={255} height={200} className="w-full" />
       </div>
-      <div className="pointer-events-none absolute right-1/4 bottom-0 w-32 opacity-20 lg:w-48">
-        <Image src="/images/deco-brush-stroke.png" alt="" width={290} height={248} className="w-full" />
+      <div className="pointer-events-none absolute -right-8 top-16 w-28 rotate-[195deg] scale-x-[-1] opacity-30 sm:w-36 lg:-right-6 lg:w-48">
+        <Image src="/images/deco-laurel-gold.png" alt="" width={255} height={200} className="w-full" />
+      </div>
+      <div className="pointer-events-none absolute -right-10 bottom-10 hidden w-32 rotate-[-30deg] scale-x-[-1] opacity-25 sm:block lg:-right-8 lg:w-44">
+        <Image src="/images/deco-laurel-gold.png" alt="" width={255} height={200} className="w-full" />
       </div>
       <div className="mx-auto max-w-2xl">
         <AnimatedReveal effect="slide" className="mb-12 text-center">

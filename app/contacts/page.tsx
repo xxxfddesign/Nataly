@@ -11,11 +11,11 @@ export default function ContactsPage() {
       <div className="pointer-events-none absolute -top-10 right-0 w-56 opacity-20 lg:w-80">
         <Image src="/images/deco-splash.png" alt="" width={400} height={230} className="w-full" />
       </div>
-      <div className="pointer-events-none absolute -left-8 top-24 w-28 rotate-12 opacity-50 lg:w-40">
+      <div className="pointer-events-none absolute -left-8 top-36 w-28 rotate-12 opacity-50 lg:top-40 lg:w-40">
         <Image src="/images/deco-laurel-branch.png" alt="" width={294} height={284} className="w-full" />
       </div>
-      <div className="pointer-events-none absolute bottom-10 right-4 w-24 opacity-40 lg:w-36">
-        <Image src="/images/deco-statue-fragment.png" alt="" width={266} height={270} className="w-full" />
+      <div className="pointer-events-none absolute bottom-6 right-2 w-28 rotate-[210deg] scale-x-[-1] opacity-35 lg:w-40">
+        <Image src="/images/deco-laurel-gold.png" alt="" width={255} height={200} className="w-full" />
       </div>
       <div className="pointer-events-none absolute left-1/3 top-1/2 w-40 -translate-y-1/2 opacity-20 lg:w-56">
         <Image src="/images/deco-gold-dust.png" alt="" width={229} height={246} className="w-full" />
