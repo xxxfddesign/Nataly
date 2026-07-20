@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, PlayCircle } from "lucide-react";
 import { ContactButtons } from "./ContactButtons";
+import { Magnetic } from "./Magnetic";
 
 export function Hero() {
   return (
@@ -11,9 +12,9 @@ export function Hero() {
       {/* Декоративная золотая клякса на фоне, дрейфует еле заметно */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
+        animate={{ opacity: 0.35 }}
         transition={{ delay: 1.6, duration: 1.2 }}
-        className="pointer-events-none absolute -left-16 top-24 w-64 animate-drift opacity-40 lg:w-96"
+        className="pointer-events-none absolute -left-20 top-64 w-56 animate-drift opacity-35 lg:top-72 lg:w-80"
       >
         <Image src="/images/deco-splash.png" alt="" width={400} height={230} className="w-full" />
       </motion.div>
@@ -54,13 +55,15 @@ export function Hero() {
             transition={{ delay: 1.1, duration: 0.8 }}
             className="mt-10 flex flex-wrap items-center gap-5"
           >
-            <Link
-              href="/catalog"
-              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 bg-[length:200%_auto] px-8 py-4 font-body text-sm font-semibold uppercase tracking-wider text-graphite shadow-gold transition-all duration-500 hover:bg-right"
-            >
-              Смотреть каталог
-              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+            <Magnetic>
+              <Link
+                href="/catalog"
+                className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 bg-[length:200%_auto] px-8 py-4 font-body text-sm font-semibold uppercase tracking-wider text-graphite shadow-gold transition-all duration-500 hover:bg-right"
+              >
+                Смотреть каталог
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </Magnetic>
             <Link
               href="/about"
               className="group inline-flex items-center gap-2 font-body text-sm uppercase tracking-wider text-ink/80 transition-colors hover:text-gold-500 dark:text-parchment/80"
@@ -102,6 +105,34 @@ export function Hero() {
               className="hidden object-cover dark:block"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+
+            {/* Золотая рамка, "прорисовывающая" себя при загрузке — как в галерее */}
+            <svg
+              className="pointer-events-none absolute inset-0 h-full w-full"
+              viewBox="0 0 100 75"
+              preserveAspectRatio="none"
+              fill="none"
+            >
+              <motion.rect
+                x="1.2"
+                y="1.2"
+                width="97.6"
+                height="72.6"
+                rx="6"
+                stroke="url(#heroFrameGradient)"
+                strokeWidth="0.6"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ delay: 0.6, duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
+              />
+              <defs>
+                <linearGradient id="heroFrameGradient" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#E8C97A" />
+                  <stop offset="50%" stopColor="#B8934A" />
+                  <stop offset="100%" stopColor="#E8C97A" />
+                </linearGradient>
+              </defs>
+            </svg>
           </div>
 
           <motion.div

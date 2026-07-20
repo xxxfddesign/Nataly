@@ -4,8 +4,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { Hero } from "@/components/Hero";
 import { AnimatedReveal } from "@/components/AnimatedReveal";
 import { GoldDivider } from "@/components/GoldDivider";
-import { CatalogCard } from "@/components/CatalogCard";
-import { seedArtworks } from "@/lib/artworks";
+import { FeaturedWorks } from "@/components/FeaturedWorks";
 import { aboutContent } from "@/lib/about-content";
 import { siteConfig } from "@/lib/site-config";
 
@@ -16,7 +15,7 @@ export default function HomePage() {
 
       {/* О художнике — краткий блок */}
       <section className="relative overflow-hidden px-6 pb-28 pt-10 lg:px-10">
-        <div className="pointer-events-none absolute -right-10 top-10 hidden w-40 opacity-30 lg:block">
+        <div className="pointer-events-none absolute -right-4 top-0 hidden w-28 opacity-20 2xl:block">
           <Image src="/images/deco-column.png" alt="" width={172} height={512} className="w-full" />
         </div>
 
@@ -79,11 +78,7 @@ export default function HomePage() {
             </Link>
           </AnimatedReveal>
 
-          <div className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-            {seedArtworks.map((a, i) => (
-              <CatalogCard artwork={a} index={i} key={a.id} />
-            ))}
-          </div>
+          <FeaturedWorks />
         </div>
       </section>
 

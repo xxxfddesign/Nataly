@@ -11,7 +11,7 @@ const NAV = [
   { href: "/", label: "Главная" },
   { href: "/about", label: "О художнике" },
   { href: "/catalog", label: "Каталог" },
-  { href: "/quiz", label: "Квиз об искусстве" },
+  { href: "/quiz", label: "Квиз" },
   { href: "/contacts", label: "Контакты" },
 ];
 
@@ -41,7 +41,7 @@ export function Header() {
             <span className="font-signature text-lg leading-none text-gold-500 sm:text-2xl">Art by Natalia</span>
           </Link>
 
-          <nav className="hidden items-center gap-8 xl:flex">
+          <nav className="hidden items-center gap-6 lg:flex">
             {NAV.map((item) => {
               const active = pathname === item.href;
               return (
@@ -65,7 +65,7 @@ export function Header() {
             <ThemeToggle />
             <button
               aria-label="Открыть меню"
-              className="xl:hidden"
+              className="lg:hidden"
               onClick={() => setOpen(true)}
             >
               <Menu size={24} />
@@ -85,7 +85,7 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="fixed inset-0 z-[100] flex flex-col bg-gradient-to-b from-ivory via-ivory to-ivory-deep dark:from-graphite dark:via-graphite dark:to-graphite-deep xl:hidden"
+            className="fixed inset-0 z-[100] flex flex-col bg-gradient-to-b from-ivory via-ivory to-ivory-deep dark:from-graphite dark:via-graphite dark:to-graphite-deep lg:hidden"
           >
             <div className="flex h-20 shrink-0 items-center justify-between border-b border-gold-400/15 px-6">
               <span className="font-signature text-2xl text-gold-500">Art by Natalia</span>
