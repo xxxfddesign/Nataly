@@ -20,6 +20,7 @@ export function Footer() {
         <nav className="flex flex-wrap gap-x-8 gap-y-2 font-body text-sm text-ink/70 dark:text-parchment/70">
           <Link href="/about" className="hover:text-gold-500">О художнике</Link>
           <Link href="/catalog" className="hover:text-gold-500">Каталог</Link>
+          <Link href="/quiz" className="hover:text-gold-500">Квиз об искусстве</Link>
           <Link href="/contacts" className="hover:text-gold-500">Контакты</Link>
           <Link href="/admin" className="hover:text-gold-500">Админ</Link>
         </nav>

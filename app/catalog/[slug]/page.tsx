@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ImageOff, Instagram, MessageCircle } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowLeft, ImageOff, Instagram, MessageCircle, X, ZoomIn } from "lucide-react";
 import { Artwork, seedArtworks } from "@/lib/artworks";
 import { formatPrice } from "@/lib/format";
 import { store } from "@/lib/admin-store";
@@ -15,6 +16,7 @@ export default function ProductPage() {
   const params = useParams<{ slug: string }>();
   const [artwork, setArtwork] = useState<Artwork | null | undefined>(undefined);
   const [activeImage, setActiveImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useEffect(() => {
     const all = store.getArtworks();
@@ -46,9 +48,19 @@ export default function ProductPage() {
 
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-2">
           <AnimatedReveal effect="scale">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-gold-400/15 bg-ivory-deep dark:bg-graphite-deep">
+            <div
+              onClick={() => mainImage && setLightboxOpen(true)}
+              className={`relative aspect-[4/5] overflow-hidden rounded-3xl border border-gold-400/15 bg-ivory-deep dark:bg-graphite-deep ${
+                mainImage ? "cursor-zoom-in" : ""
+              }`}
+            >
               {mainImage ? (
-                <Image src={mainImage} alt={artwork.title} fill className="object-cover" />
+                <>
+                  <Image src={mainImage} alt={artwork.title} fill className="object-cover" />
+                  <span className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition-transform hover:scale-110">
+                    <ZoomIn size={18} />
+                  </span>
+                </>
               ) : (
                 <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-ink/30 dark:text-parchment/30">
                   <ImageOff size={40} />
@@ -115,6 +127,35 @@ export default function ProductPage() {
           </AnimatedReveal>
         </div>
       </div>
+
+      <AnimatePresence>
+        {lightboxOpen && mainImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightboxOpen(false)}
+            className="fixed inset-0 z-[110] flex cursor-zoom-out items-center justify-center bg-black/90 p-6 backdrop-blur-sm"
+          >
+            <button
+              aria-label="Закрыть"
+              onClick={() => setLightboxOpen(false)}
+              className="absolute right-6 top-6 flex h-11 w-11 items-center justify-center rounded-full border border-gold-400/40 text-gold-300 transition-colors hover:bg-gold-400/10"
+            >
+              <X size={22} />
+            </button>
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="relative h-full max-h-[85vh] w-full max-w-4xl"
+            >
+              <Image src={mainImage} alt={artwork.title} fill className="object-contain" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

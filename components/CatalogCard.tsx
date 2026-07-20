@@ -1,13 +1,32 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ImageOff } from "lucide-react";
 import { Artwork } from "@/lib/artworks";
 import { formatPrice } from "@/lib/format";
 
 export function CatalogCard({ artwork, index = 0 }: { artwork: Artwork; index?: number }) {
   const image = artwork.images[0];
+
+  // Лёгкий "музейный" 3D-наклон изображения вслед за курсором.
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+  const springX = useSpring(mouseX, { stiffness: 150, damping: 18 });
+  const springY = useSpring(mouseY, { stiffness: 150, damping: 18 });
+  const rotateX = useTransform(springY, [0, 1], [6, -6]);
+  const rotateY = useTransform(springX, [0, 1], [-6, 6]);
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width);
+    mouseY.set((e.clientY - rect.top) / rect.height);
+  }
+
+  function handleMouseLeave() {
+    mouseX.set(0.5);
+    mouseY.set(0.5);
+  }
 
   return (
     <motion.div
@@ -17,7 +36,12 @@ export function CatalogCard({ artwork, index = 0 }: { artwork: Artwork; index?: 
       transition={{ duration: 0.7, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
     >
       <Link href={`/catalog/${artwork.id}`} className="group block">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-gold-400/15 bg-ivory-deep dark:bg-graphite-deep">
+        <motion.div
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          style={{ rotateX, rotateY, transformPerspective: 800 }}
+          className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-gold-400/15 bg-ivory-deep dark:bg-graphite-deep"
+        >
           {image ? (
             <Image
               src={image}
@@ -42,7 +66,7 @@ export function CatalogCard({ artwork, index = 0 }: { artwork: Artwork; index?: 
           <span className="absolute bottom-4 left-4 translate-y-4 rounded-full bg-gold-400 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-graphite opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100">
             Подробнее
           </span>
-        </div>
+        </motion.div>
 
         <div className="mt-4 flex items-start justify-between gap-3">
           <div>

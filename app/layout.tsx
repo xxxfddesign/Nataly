@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ParticleField } from "@/components/ParticleField";
 import { AmbientGlow } from "@/components/AmbientGlow";
+import { CursorTrail } from "@/components/CursorTrail";
 import { IntroLoader } from "@/components/IntroLoader";
 import { PageTransition } from "@/components/PageTransition";
 import { Chatbot } from "@/components/Chatbot";
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <IntroLoader />
           <AmbientGlow />
+          <CursorTrail />
           <ParticleField />
           <Header />
           <main className="relative z-10">

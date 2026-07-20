@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Hero } from "@/components/Hero";
 import { AnimatedReveal } from "@/components/AnimatedReveal";
 import { GoldDivider } from "@/components/GoldDivider";
@@ -85,6 +85,28 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Квиз — приглашение */}
+      <section className="relative px-6 py-20 lg:px-10">
+        <AnimatedReveal
+          effect="scale"
+          className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-3xl border border-gold-400/20 bg-gradient-to-br from-gold-400/10 via-transparent to-gold-400/5 p-10 text-center shadow-gold sm:flex-row sm:text-left"
+        >
+          <Sparkles className="hidden shrink-0 text-gold-500 sm:block" size={40} />
+          <div className="flex-1">
+            <h3 className="font-display text-2xl sm:text-3xl">Какой вы тип ценителя искусства?</h3>
+            <p className="mt-2 font-body text-ink/70 dark:text-parchment/70">
+              Пройдите короткий квиз из пяти вопросов — и узнайте, какие работы откликнутся именно вам.
+            </p>
+          </div>
+          <Link
+            href="/quiz"
+            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 bg-[length:200%_auto] px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-graphite shadow-gold transition-all duration-500 hover:bg-right"
+          >
+            Пройти квиз <ArrowRight size={16} />
+          </Link>
+        </AnimatedReveal>
       </section>
 
       {/* Приглашение к контакту */}
