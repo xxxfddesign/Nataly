@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, RotateCcw, Sparkles } from "lucide-react";
 import { AnimatedReveal } from "@/components/AnimatedReveal";
@@ -122,7 +123,16 @@ export default function QuizPage() {
   const progress = ((finished ? QUESTIONS.length : step) / QUESTIONS.length) * 100;
 
   return (
-    <div className="px-6 pb-28 pt-32 lg:px-10">
+    <div className="relative overflow-hidden px-6 pb-28 pt-32 lg:px-10">
+      <div className="pointer-events-none absolute -right-10 top-16 w-40 opacity-25 lg:w-56">
+        <Image src="/images/deco-statue-fragment.png" alt="" width={266} height={270} className="w-full" />
+      </div>
+      <div className="pointer-events-none absolute -left-10 bottom-10 w-32 -rotate-6 opacity-40 lg:w-48">
+        <Image src="/images/deco-laurel-branch.png" alt="" width={294} height={284} className="w-full" />
+      </div>
+      <div className="pointer-events-none absolute right-1/4 bottom-0 w-32 opacity-20 lg:w-48">
+        <Image src="/images/deco-brush-stroke.png" alt="" width={290} height={248} className="w-full" />
+      </div>
       <div className="mx-auto max-w-2xl">
         <AnimatedReveal effect="slide" className="mb-12 text-center">
           <p className="mb-3 flex items-center justify-center gap-2 font-body text-xs uppercase tracking-widest2 text-gold-500">

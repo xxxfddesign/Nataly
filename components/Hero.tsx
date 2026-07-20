@@ -9,27 +9,17 @@ import { Magnetic } from "./Magnetic";
 export function Hero() {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden pt-20">
-      {/* Декоративная золотая клякса на фоне, дрейфует еле заметно */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.35 }}
+        animate={{ opacity: 0.5 }}
         transition={{ delay: 1.6, duration: 1.2 }}
-        className="pointer-events-none absolute -left-20 top-64 w-56 animate-drift opacity-35 lg:top-72 lg:w-80"
+        className="pointer-events-none absolute -left-16 top-24 w-64 animate-drift opacity-40 lg:w-96"
       >
         <Image src="/images/deco-splash.png" alt="" width={400} height={230} className="w-full" />
       </motion.div>
 
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:gap-16 lg:px-10">
         <div className="order-2 lg:order-1">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            className="mb-5 font-body text-xs uppercase tracking-widest2 text-gold-500"
-          >
-            Наталья Калугина (Шилко) · Художник и скульптор
-          </motion.p>
-
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -106,7 +96,10 @@ export function Hero() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
 
-            {/* Золотая рамка, "прорисовывающая" себя при загрузке — как в галерее */}
+            {/* Золотая рамка, "прорисовывающая" себя при загрузке — как в галерее.
+                Используем ручной stroke-dasharray/dashoffset вместо pathLength:
+                у framer-motion pathLength на скруглённом прямоугольнике иногда
+                не замыкает контур до конца. */}
             <svg
               className="pointer-events-none absolute inset-0 h-full w-full"
               viewBox="0 0 100 75"
@@ -121,8 +114,9 @@ export function Hero() {
                 rx="6"
                 stroke="url(#heroFrameGradient)"
                 strokeWidth="0.6"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
+                strokeDasharray="340"
+                initial={{ strokeDashoffset: 340, opacity: 0 }}
+                animate={{ strokeDashoffset: 0, opacity: 1 }}
                 transition={{ delay: 0.6, duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
               />
               <defs>

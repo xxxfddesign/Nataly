@@ -11,6 +11,15 @@ export default function ContactsPage() {
       <div className="pointer-events-none absolute -top-10 right-0 w-56 opacity-20 lg:w-80">
         <Image src="/images/deco-splash.png" alt="" width={400} height={230} className="w-full" />
       </div>
+      <div className="pointer-events-none absolute -left-8 top-24 w-28 rotate-12 opacity-50 lg:w-40">
+        <Image src="/images/deco-laurel-branch.png" alt="" width={294} height={284} className="w-full" />
+      </div>
+      <div className="pointer-events-none absolute bottom-10 right-4 w-24 opacity-40 lg:w-36">
+        <Image src="/images/deco-statue-fragment.png" alt="" width={266} height={270} className="w-full" />
+      </div>
+      <div className="pointer-events-none absolute left-1/3 top-1/2 w-40 -translate-y-1/2 opacity-20 lg:w-56">
+        <Image src="/images/deco-gold-dust.png" alt="" width={229} height={246} className="w-full" />
+      </div>
 
       <div className="mx-auto max-w-4xl text-center">
         <AnimatedReveal effect="slide">
@@ -22,7 +31,7 @@ export default function ContactsPage() {
           </p>
         </AnimatedReveal>
 
-        <AnimatedReveal effect="scale" delay={0.15} className="mx-auto mt-14 grid max-w-md grid-cols-1 gap-4">
+        <AnimatedReveal effect="scale" delay={0.15} className="relative mx-auto mt-14 grid max-w-md grid-cols-1 gap-4">
           <ContactButtons variant="full" />
         </AnimatedReveal>
       </div>

@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import { AnimatedReveal } from "@/components/AnimatedReveal";
 import { GoldDivider } from "@/components/GoldDivider";
 import { FeaturedWorks } from "@/components/FeaturedWorks";
+import { Magnetic } from "@/components/Magnetic";
 import { aboutContent } from "@/lib/about-content";
 import { siteConfig } from "@/lib/site-config";
 
@@ -40,11 +41,11 @@ export default function HomePage() {
             </p>
             <p className="mt-4 max-w-xl font-signature text-2xl text-gold-500">“{aboutContent.quote}”</p>
 
-            <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
+            <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-4">
               {siteConfig.stats.map((s) => (
                 <div key={s.label}>
                   <p className="font-display text-3xl text-gold-500">{s.value}</p>
-                  <p className="text-xs uppercase tracking-widest2 text-ink/50 dark:text-parchment/50">{s.label}</p>
+                  <p className="mt-2 text-xs uppercase leading-relaxed tracking-widest2 text-ink/50 dark:text-parchment/50">{s.label}</p>
                 </div>
               ))}
             </div>
@@ -104,25 +105,44 @@ export default function HomePage() {
         </AnimatedReveal>
       </section>
 
-      {/* Приглашение к контакту */}
-      <section className="relative overflow-hidden px-6 py-28 lg:px-10">
-        <div className="pointer-events-none absolute -bottom-10 left-1/2 w-72 -translate-x-1/2 opacity-25 lg:w-[30rem]">
-          <Image src="/images/deco-wave.png" alt="" width={601} height={160} className="w-full" />
+      {/* Приглашение к контакту — фон меняется по теме, как баннер в Hero */}
+      <section className="relative overflow-hidden px-6 py-32 lg:px-10">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/cta-scene-light.png"
+            alt=""
+            fill
+            className="object-cover dark:hidden"
+          />
+          <Image
+            src="/images/cta-scene-dark.png"
+            alt=""
+            fill
+            className="hidden object-cover dark:block"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-ivory/60 via-ivory/10 to-transparent dark:from-graphite/70 dark:via-graphite/20 dark:to-transparent" />
         </div>
+
+        <div className="pointer-events-none absolute left-6 top-10 w-24 -rotate-12 opacity-70 sm:w-32 lg:left-14">
+          <Image src="/images/deco-laurel-branch.png" alt="" width={294} height={284} className="w-full" />
+        </div>
+
         <AnimatedReveal effect="scale" className="relative mx-auto max-w-3xl text-center">
           <h2 className="font-display text-4xl leading-tight sm:text-5xl">
             Искусство создаёт <span className="gold-text">бессмертие</span>
           </h2>
-          <p className="mx-auto mt-6 max-w-xl font-body text-lg text-ink/70 dark:text-parchment/70">
+          <p className="mx-auto mt-6 max-w-xl font-body text-lg text-ink/70 dark:text-parchment/80">
             Каждая работа — приглашение остановиться. Если что-то откликнулось —
             напишите, и мы расскажем об этой работе подробнее.
           </p>
-          <Link
-            href="/contacts"
-            className="mt-10 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 bg-[length:200%_auto] px-8 py-4 font-body text-sm font-semibold uppercase tracking-wider text-graphite shadow-gold transition-all duration-500 hover:bg-right"
-          >
-            Связаться со мной <ArrowRight size={16} />
-          </Link>
+          <Magnetic>
+            <Link
+              href="/contacts"
+              className="mt-10 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 bg-[length:200%_auto] px-8 py-4 font-body text-sm font-semibold uppercase tracking-wider text-graphite shadow-gold transition-all duration-500 hover:bg-right"
+            >
+              Связаться со мной <ArrowRight size={16} />
+            </Link>
+          </Magnetic>
         </AnimatedReveal>
       </section>
     </>
