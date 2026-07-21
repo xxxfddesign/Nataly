@@ -133,7 +133,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.6, duration: 0.8 }}
-            className="absolute -bottom-8 -left-8 hidden w-40 rounded-2xl border border-gold-400/30 bg-ivory/90 p-4 shadow-gold backdrop-blur dark:bg-graphite/90 sm:block"
+            className="absolute bottom-10 -left-8 hidden w-40 rounded-2xl border border-gold-400/30 bg-ivory/90 p-4 shadow-gold backdrop-blur dark:bg-graphite/90 sm:block"
           >
             <p className="font-display text-2xl text-gold-500">13+</p>
             <p className="text-xs uppercase tracking-widest2 text-ink/60 dark:text-parchment/60">лет в искусстве</p>

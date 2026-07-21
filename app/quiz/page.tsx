@@ -124,8 +124,9 @@ export default function QuizPage() {
 
   return (
     <div className="relative overflow-hidden px-6 pb-28 pt-32 lg:px-10">
-      <div className="absolute inset-0 hidden opacity-[0.08] dark:block">
-        <Image src="/images/quiz-box-bg.png" alt="" fill className="object-cover" />
+      <div className="absolute inset-0 opacity-[0.06] dark:opacity-[0.08]">
+        <Image src="/images/about-scene-light.png" alt="" fill className="object-cover dark:hidden" />
+        <Image src="/images/quiz-box-bg.png" alt="" fill className="hidden object-cover dark:block" />
       </div>
       <div className="pointer-events-none absolute -left-10 bottom-16 w-32 -rotate-6 opacity-40 lg:w-48">
         <Image src="/images/deco-laurel-branch.png" alt="" width={294} height={284} className="w-full" />

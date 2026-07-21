@@ -7,10 +7,14 @@ export const metadata = { title: "Каталог — Art by Natalia" };
 export default function CatalogPage() {
   return (
     <div className="relative overflow-hidden px-6 pb-28 pt-32 lg:px-10">
+      <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.07]">
+        <Image src="/images/about-scene-light.png" alt="" fill className="object-cover dark:hidden" />
+        <Image src="/images/about-scene-dark.png" alt="" fill className="hidden object-cover dark:block" />
+      </div>
       <div className="pointer-events-none absolute top-28 right-0 hidden w-52 opacity-40 lg:block">
         <Image src="/images/deco-bust-light.png" alt="" width={262} height={354} className="w-full" />
       </div>
-      <div className="mx-auto max-w-7xl">
+      <div className="relative mx-auto max-w-7xl">
         <AnimatedReveal effect="slide" className="mb-14 max-w-2xl">
           <p className="mb-3 font-body text-xs uppercase tracking-widest2 text-gold-500">Собрание работ</p>
           <h1 className="font-display text-5xl leading-tight">Каталог работ</h1>

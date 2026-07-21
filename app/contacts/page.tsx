@@ -8,8 +8,9 @@ export const metadata = { title: "Контакты — Art by Natalia" };
 export default function ContactsPage() {
   return (
     <div className="relative overflow-hidden px-6 pb-28 pt-32 lg:px-10">
-      <div className="absolute inset-0 hidden opacity-[0.08] dark:block">
-        <Image src="/images/contacts-box-bg.png" alt="" fill className="object-cover" />
+      <div className="absolute inset-0 opacity-[0.06] dark:opacity-[0.08]">
+        <Image src="/images/about-scene-light.png" alt="" fill className="object-cover dark:hidden" />
+        <Image src="/images/contacts-box-bg.png" alt="" fill className="hidden object-cover dark:block" />
       </div>
       <div className="pointer-events-none absolute -top-10 right-0 w-56 opacity-20 lg:w-80">
         <Image src="/images/deco-splash.png" alt="" width={400} height={230} className="w-full" />

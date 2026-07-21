@@ -128,21 +128,19 @@ export default function HomePage() {
             src="/images/cta-scene-light.png"
             alt=""
             fill
-            className="object-cover dark:hidden"
+            className="object-cover object-[78%_30%] sm:object-center dark:hidden"
           />
           <Image
             src="/images/cta-scene-dark.png"
             alt=""
             fill
-            className="hidden object-cover dark:block"
+            className="hidden object-cover object-[78%_30%] sm:object-center dark:block"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-ivory/60 via-ivory/10 to-transparent dark:from-graphite/70 dark:via-graphite/20 dark:to-transparent" />
           {/* Мягкий переход сверху, чтобы фон не обрывался резко на границе с блоком квиза */}
-          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ivory to-transparent dark:from-graphite" />
-        </div>
-
-        <div className="pointer-events-none absolute left-6 top-10 w-24 -rotate-12 opacity-70 sm:w-32 lg:left-14">
-          <Image src="/images/deco-laurel-branch.png" alt="" width={294} height={284} className="w-full" />
+          <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-ivory via-ivory/70 to-transparent dark:from-graphite dark:via-graphite/70" />
+          {/* И снизу — перед футером */}
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ivory-deep via-ivory-deep/40 to-transparent dark:from-graphite-deep dark:via-graphite-deep/40" />
         </div>
 
         <AnimatedReveal effect="scale" className="relative mx-auto max-w-3xl text-center">
