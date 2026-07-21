@@ -12,12 +12,16 @@ export default function AboutPage() {
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 lg:grid-cols-[380px_1fr]">
         <AnimatedReveal effect="scale" className="mx-auto lg:mx-0 lg:self-start">
           <div className="relative w-72 sm:w-80">
+            <div className="pointer-events-none absolute inset-0 -z-10 scale-125 rounded-full bg-gold-400/15 blur-3xl dark:bg-gold-400/10" />
+            <div className="pointer-events-none absolute -right-8 -top-6 w-20 rotate-[15deg] animate-drift opacity-35 sm:w-28">
+              <Image src="/images/deco-laurel-gold.png" alt="" width={255} height={200} className="w-full" />
+            </div>
             <Image
               src="/images/portrait-natalia.png"
               alt={siteConfig.artistName}
               width={500}
               height={500}
-              className="w-full drop-shadow-2xl"
+              className="relative w-full drop-shadow-2xl"
             />
           </div>
           <p className="mt-6 text-center font-signature text-3xl text-gold-500 lg:text-left">

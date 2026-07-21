@@ -23,10 +23,11 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
           <AnimatedReveal effect="slide">
             <div className="relative mx-auto w-72 sm:w-80">
-              <div className="pointer-events-none absolute -right-10 -top-8 hidden w-24 rotate-[35deg] opacity-40 sm:block lg:w-32">
+              <div className="pointer-events-none absolute inset-0 -z-10 scale-125 rounded-full bg-gold-400/15 blur-3xl dark:bg-gold-400/10" />
+              <div className="pointer-events-none absolute -right-10 -top-6 hidden w-24 rotate-[15deg] animate-drift opacity-40 sm:block lg:w-32">
                 <Image src="/images/deco-laurel-gold.png" alt="" width={255} height={200} className="w-full" />
               </div>
-              <div className="pointer-events-none absolute -bottom-6 -left-8 hidden w-28 opacity-25 sm:block lg:w-36">
+              <div className="pointer-events-none absolute -bottom-6 -left-8 hidden w-28 animate-drift opacity-25 [animation-delay:1.5s] sm:block lg:w-36">
                 <Image src="/images/deco-gold-dust.png" alt="" width={229} height={246} className="w-full" />
               </div>
               <Image
@@ -91,14 +92,19 @@ export default function HomePage() {
 
       {/* Квиз — приглашение */}
       <section className="relative overflow-hidden px-6 py-20 lg:px-10">
-        <div className="pointer-events-none absolute inset-x-0 -top-10 mx-auto h-[420px] w-full max-w-6xl opacity-70 sm:h-[520px] sm:opacity-80">
+        <div className="pointer-events-none absolute inset-0">
           <Image
             src="/images/deco-quiz-wave.png"
             alt=""
             fill
-            className="object-contain object-center"
-            sizes="(max-width: 768px) 100vw, 1200px"
+            className="object-cover object-center opacity-60 dark:opacity-85"
+            sizes="100vw"
           />
+          {/* Мягкое растворение по краям, чтобы фон не имел видимых границ */}
+          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-ivory to-transparent dark:from-graphite sm:w-40" />
+          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-ivory to-transparent dark:from-graphite sm:w-40" />
+          <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-ivory to-transparent dark:from-graphite" />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-ivory to-transparent dark:from-graphite" />
         </div>
 
         <AnimatedReveal
@@ -137,8 +143,8 @@ export default function HomePage() {
             className="hidden object-cover dark:block"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-ivory/60 via-ivory/10 to-transparent dark:from-graphite/70 dark:via-graphite/20 dark:to-transparent" />
-          {/* Мягкий переход сверху, чтобы фото не выглядело жёстко обрезанным */}
-          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ivory to-transparent dark:from-graphite sm:h-56" />
+          {/* Мягкое растворение сверху, чтобы фото не выглядело жёстко обрезанным */}
+          <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-ivory via-ivory/60 to-transparent dark:from-graphite dark:via-graphite/60 sm:h-96" />
         </div>
 
         <div className="pointer-events-none absolute left-6 top-10 w-24 -rotate-12 opacity-70 sm:w-32 lg:left-14">

@@ -18,7 +18,7 @@ export function Hero() {
         <Image src="/images/deco-splash.png" alt="" width={400} height={230} className="w-full" />
       </motion.div>
 
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:gap-16 lg:px-10">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:items-start lg:gap-16 lg:px-10">
         <div className="order-2 lg:order-1">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
@@ -74,7 +74,7 @@ export function Hero() {
         </div>
 
         <motion.div
-          className="relative order-1 lg:order-2 lg:-translate-y-6"
+          className="relative order-1 lg:order-2 lg:-translate-y-2"
           initial={{ opacity: 0, scale: 1.12 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
