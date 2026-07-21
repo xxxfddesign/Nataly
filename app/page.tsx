@@ -92,19 +92,21 @@ export default function HomePage() {
 
       {/* Квиз — приглашение */}
       <section className="relative overflow-hidden px-6 py-20 lg:px-10">
-        <div className="pointer-events-none absolute inset-0">
+        <div className="pointer-events-none absolute inset-x-0 top-6 mx-auto w-full max-w-[1000px] px-4 opacity-90 sm:top-2">
           <Image
-            src="/images/deco-quiz-wave.png"
+            src="/images/deco-quiz-wave-light.png"
             alt=""
-            fill
-            className="object-cover object-center opacity-60 dark:opacity-85"
-            sizes="100vw"
+            width={724}
+            height={337}
+            className="block w-full dark:hidden"
           />
-          {/* Мягкое растворение по краям, чтобы фон не имел видимых границ */}
-          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-ivory to-transparent dark:from-graphite sm:w-40" />
-          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-ivory to-transparent dark:from-graphite sm:w-40" />
-          <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-ivory to-transparent dark:from-graphite" />
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-ivory to-transparent dark:from-graphite" />
+          <Image
+            src="/images/deco-quiz-wave-dark.png"
+            alt=""
+            width={724}
+            height={330}
+            className="hidden w-full dark:block"
+          />
         </div>
 
         <AnimatedReveal
