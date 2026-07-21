@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, RotateCcw, Sparkles, Heart, Gem, BookOpen, Compass } from "lucide-react";
+import { ArrowRight, RotateCcw, Sparkles } from "lucide-react";
 import { AnimatedReveal } from "@/components/AnimatedReveal";
 
 type TypeKey = "romantic" | "collector" | "philosopher" | "explorer";
@@ -91,13 +91,6 @@ const RESULTS: Record<
   },
 };
 
-const TYPE_ICONS: Record<TypeKey, typeof Heart> = {
-  romantic: Heart,
-  collector: Gem,
-  philosopher: BookOpen,
-  explorer: Compass,
-};
-
 export default function QuizPage() {
   const [step, setStep] = useState(0);
   const [scores, setScores] = useState<Record<TypeKey, number>>({
@@ -127,22 +120,20 @@ export default function QuizPage() {
     scores[a] >= scores[b] ? a : b
   );
 
+  const progress = ((finished ? QUESTIONS.length : step) / QUESTIONS.length) * 100;
+
   return (
     <div className="relative overflow-hidden px-6 pb-28 pt-32 lg:px-10">
-      {/* Лавровые ветви по краям — слева и справа, зеркально */}
-      <div className="pointer-events-none absolute -left-8 top-10 w-28 -rotate-12 opacity-30 sm:w-36 lg:-left-6 lg:w-48">
-        <Image src="/images/deco-laurel-gold.png" alt="" width={255} height={200} className="w-full" />
+      <div className="absolute inset-0 hidden opacity-[0.08] dark:block">
+        <Image src="/images/quiz-box-bg.png" alt="" fill className="object-cover" />
       </div>
-      <div className="pointer-events-none absolute -left-10 bottom-8 hidden w-32 rotate-[150deg] opacity-25 sm:block lg:-left-8 lg:w-44">
-        <Image src="/images/deco-laurel-gold.png" alt="" width={255} height={200} className="w-full" />
+      <div className="pointer-events-none absolute -left-10 bottom-16 w-32 -rotate-6 opacity-40 lg:w-48">
+        <Image src="/images/deco-laurel-branch.png" alt="" width={294} height={284} className="w-full" />
       </div>
-      <div className="pointer-events-none absolute -right-8 top-16 w-28 rotate-[195deg] scale-x-[-1] opacity-30 sm:w-36 lg:-right-6 lg:w-48">
-        <Image src="/images/deco-laurel-gold.png" alt="" width={255} height={200} className="w-full" />
+      <div className="pointer-events-none absolute -right-10 bottom-16 w-32 rotate-6 scale-x-[-1] opacity-40 lg:w-48">
+        <Image src="/images/deco-laurel-branch.png" alt="" width={294} height={284} className="w-full" />
       </div>
-      <div className="pointer-events-none absolute -right-10 bottom-10 hidden w-32 rotate-[-30deg] scale-x-[-1] opacity-25 sm:block lg:-right-8 lg:w-44">
-        <Image src="/images/deco-laurel-gold.png" alt="" width={255} height={200} className="w-full" />
-      </div>
-      <div className="mx-auto max-w-2xl">
+      <div className="relative mx-auto max-w-2xl">
         <AnimatedReveal effect="slide" className="mb-12 text-center">
           <p className="mb-3 flex items-center justify-center gap-2 font-body text-xs uppercase tracking-widest2 text-gold-500">
             <Sparkles size={14} /> Небольшая игра
@@ -153,29 +144,12 @@ export default function QuizPage() {
           </p>
         </AnimatedReveal>
 
-        <div className="mb-10 flex items-center justify-center gap-2 sm:gap-3">
-          {QUESTIONS.map((_, i) => {
-            const isDone = finished || i < step;
-            const isCurrent = !finished && i === step;
-            return (
-              <div key={i} className="flex items-center gap-2 sm:gap-3">
-                <div
-                  className={`flex h-8 w-8 items-center justify-center rounded-full border font-body text-xs transition-all duration-400 ${
-                    isDone
-                      ? "border-gold-400 bg-gold-400 text-graphite"
-                      : isCurrent
-                        ? "border-gold-400 text-gold-500 shadow-gold"
-                        : "border-gold-400/25 text-ink/30 dark:text-parchment/30"
-                  }`}
-                >
-                  {i + 1}
-                </div>
-                {i < QUESTIONS.length - 1 && (
-                  <div className={`h-px w-4 sm:w-8 ${isDone ? "bg-gold-400" : "bg-gold-400/20"}`} />
-                )}
-              </div>
-            );
-          })}
+        <div className="mb-10 h-1 w-full overflow-hidden rounded-full bg-black/5 dark:bg-white/10">
+          <motion.div
+            className="h-full bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500"
+            animate={{ width: `${progress}%` }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          />
         </div>
 
         <AnimatePresence mode="wait">
@@ -195,17 +169,14 @@ export default function QuizPage() {
                 {QUESTIONS[step].question}
               </h2>
               <div className="grid grid-cols-1 gap-3">
-                {QUESTIONS[step].options.map((opt, i) => (
+                {QUESTIONS[step].options.map((opt) => (
                   <button
                     key={opt.label}
                     onClick={() => answer(opt.type)}
-                    className="group flex items-center gap-4 rounded-2xl border border-gold-400/20 bg-transparent px-6 py-4 text-left font-body transition-all duration-300 hover:border-gold-400 hover:bg-gold-400/10 hover:shadow-gold"
+                    className="group flex items-center justify-between rounded-2xl border border-gold-400/20 bg-transparent px-6 py-4 text-left font-body transition-all duration-300 hover:border-gold-400 hover:bg-gold-400/10 hover:shadow-gold"
                   >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold-400/30 font-display text-sm text-gold-500 transition-colors duration-300 group-hover:border-gold-400 group-hover:bg-gold-400 group-hover:text-graphite">
-                      {String.fromCharCode(65 + i)}
-                    </span>
-                    <span className="flex-1">{opt.label}</span>
-                    <ArrowRight size={16} className="shrink-0 text-gold-500 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
+                    {opt.label}
+                    <ArrowRight size={16} className="text-gold-500 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
                   </button>
                 ))}
               </div>
@@ -216,15 +187,8 @@ export default function QuizPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="relative rounded-3xl border border-gold-400/20 bg-ivory-deep/60 p-10 text-center shadow-gold dark:bg-graphite-deep/60"
+              className="rounded-3xl border border-gold-400/20 bg-ivory-deep/60 p-10 text-center shadow-gold dark:bg-graphite-deep/60"
             >
-              <div className="pointer-events-none absolute left-1/2 top-8 -z-10 h-40 w-40 -translate-x-1/2 rounded-full bg-gold-400/20 blur-3xl" />
-              <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border border-gold-400/40 bg-gold-400/10 text-gold-500 shadow-gold">
-                {(() => {
-                  const ResultIcon = TYPE_ICONS[resultKey];
-                  return <ResultIcon size={28} />;
-                })()}
-              </div>
               <p className="mb-3 font-body text-xs uppercase tracking-widest2 text-gold-500">Ваш результат</p>
               <h2 className="font-signature text-5xl text-gold-500">{RESULTS[resultKey].title}</h2>
               <p className="mx-auto mt-6 max-w-lg font-body text-lg leading-relaxed text-ink/75 dark:text-parchment/75">
@@ -233,29 +197,6 @@ export default function QuizPage() {
               <p className="mt-4 font-body text-sm text-ink/60 dark:text-parchment/60">
                 {RESULTS[resultKey].suggestion}
               </p>
-
-              <div className="mx-auto mt-10 flex max-w-md flex-col gap-3">
-                {(Object.keys(scores) as TypeKey[]).map((key) => {
-                  const Icon = TYPE_ICONS[key];
-                  const pct = Math.round((scores[key] / QUESTIONS.length) * 100);
-                  return (
-                    <div key={key} className="flex items-center gap-3 text-left">
-                      <Icon size={15} className="shrink-0 text-gold-500" />
-                      <span className="w-28 shrink-0 font-body text-xs uppercase tracking-wider text-ink/60 dark:text-parchment/60">
-                        {RESULTS[key].title}
-                      </span>
-                      <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-black/5 dark:bg-white/10">
-                        <motion.div
-                          className="h-full rounded-full bg-gradient-to-r from-gold-300 to-gold-500"
-                          initial={{ width: 0 }}
-                          animate={{ width: `${pct}%` }}
-                          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
                 <Link

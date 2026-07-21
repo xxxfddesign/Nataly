@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode } from "react";
-import { ArrowUpRight, Instagram, MessageCircle, Phone } from "lucide-react";
+import { Instagram, MessageCircle, Phone } from "lucide-react";
 import { links } from "@/lib/site-config";
 
 const base =
@@ -38,17 +38,12 @@ function ContactRow({ icon, label, href }: { icon: ReactNode; label: string; hre
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel="noopener noreferrer"
-      className="group relative flex items-center gap-4 overflow-hidden rounded-2xl border border-gold-400/25 bg-black/[0.02] px-6 py-4 transition-all duration-400 hover:-translate-y-0.5 hover:border-gold-400 hover:shadow-gold dark:bg-white/[0.02]"
+      className="group flex items-center gap-4 rounded-2xl border border-gold-400/25 bg-black/[0.02] px-6 py-4 transition-all duration-400 hover:border-gold-400 hover:bg-gold-400/5 hover:shadow-gold dark:bg-white/[0.02]"
     >
-      <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-gold-400/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-      <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-400/25 via-gold-400/10 to-transparent text-gold-500 ring-1 ring-gold-400/30 transition-transform duration-400 group-hover:scale-110 group-hover:ring-gold-400">
+      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold-400/10 text-gold-500 transition-transform duration-400 group-hover:scale-110">
         {icon}
       </span>
-      <span className="relative font-display text-lg">{label}</span>
-      <ArrowUpRight
-        size={18}
-        className="relative ml-auto text-gold-500 opacity-0 transition-all duration-300 -translate-x-1 group-hover:translate-x-0 group-hover:opacity-100"
-      />
+      <span className="font-display text-lg">{label}</span>
     </a>
   );
 }

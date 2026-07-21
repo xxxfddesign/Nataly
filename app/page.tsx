@@ -16,26 +16,23 @@ export default function HomePage() {
 
       {/* О художнике — краткий блок */}
       <section className="relative overflow-hidden px-6 pb-28 pt-10 lg:px-10">
+        <div className="absolute inset-0 opacity-[0.07] dark:opacity-[0.14]">
+          <Image src="/images/about-scene-light.png" alt="" fill className="object-cover dark:hidden" />
+          <Image src="/images/about-scene-dark.png" alt="" fill className="hidden object-cover dark:block" />
+        </div>
         <div className="pointer-events-none absolute -right-4 top-0 hidden w-28 opacity-20 2xl:block">
           <Image src="/images/deco-column.png" alt="" width={172} height={512} className="w-full" />
         </div>
 
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
+        <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
           <AnimatedReveal effect="slide">
             <div className="relative mx-auto w-72 sm:w-80">
-              <div className="pointer-events-none absolute inset-0 -z-10 scale-125 rounded-full bg-gold-400/15 blur-3xl dark:bg-gold-400/10" />
-              <div className="pointer-events-none absolute -right-10 -top-6 hidden w-24 rotate-[15deg] animate-drift opacity-40 sm:block lg:w-32">
-                <Image src="/images/deco-laurel-gold.png" alt="" width={255} height={200} className="w-full" />
-              </div>
-              <div className="pointer-events-none absolute -bottom-6 -left-8 hidden w-28 animate-drift opacity-25 [animation-delay:1.5s] sm:block lg:w-36">
-                <Image src="/images/deco-gold-dust.png" alt="" width={229} height={246} className="w-full" />
-              </div>
               <Image
                 src="/images/portrait-natalia.png"
                 alt={siteConfig.artistName}
                 width={500}
                 height={500}
-                className="relative w-full drop-shadow-2xl"
+                className="w-full drop-shadow-2xl"
               />
             </div>
           </AnimatedReveal>
@@ -91,21 +88,33 @@ export default function HomePage() {
       </section>
 
       {/* Квиз — приглашение */}
-      <section className="relative overflow-hidden px-6 py-20 lg:px-10">
+      <section className="relative px-6 py-20 lg:px-10">
         <AnimatedReveal
           effect="scale"
-          className="relative mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-3xl border border-gold-400/20 bg-gradient-to-br from-gold-400/10 via-transparent to-gold-400/5 p-10 text-center shadow-gold backdrop-blur-[2px] sm:flex-row sm:text-left"
+          className="relative mx-auto flex max-w-4xl flex-col items-center gap-6 overflow-hidden rounded-3xl border border-gold-400/20 bg-gradient-to-br from-gold-400/10 via-transparent to-gold-400/5 p-10 text-center shadow-gold dark:border-gold-400/25 dark:bg-none sm:flex-row sm:text-left"
         >
-          <Sparkles className="hidden shrink-0 text-gold-500 sm:block" size={40} />
-          <div className="flex-1">
+          <div className="absolute inset-0 hidden dark:block">
+            <Image src="/images/quiz-box-bg.png" alt="" fill className="object-cover" />
+            <div className="absolute inset-0 bg-graphite/40" />
+          </div>
+
+          <div className="pointer-events-none absolute -left-6 top-1/2 hidden w-20 -translate-y-1/2 opacity-60 sm:block lg:w-28">
+            <Image src="/images/deco-laurel-branch.png" alt="" width={294} height={284} className="w-full" />
+          </div>
+          <div className="pointer-events-none absolute -right-6 top-1/2 hidden w-20 -translate-y-1/2 scale-x-[-1] opacity-60 sm:block lg:w-28">
+            <Image src="/images/deco-laurel-branch.png" alt="" width={294} height={284} className="w-full" />
+          </div>
+
+          <Sparkles className="relative hidden shrink-0 text-gold-500 sm:block" size={40} />
+          <div className="relative flex-1">
             <h3 className="font-display text-2xl sm:text-3xl">Какой вы тип ценителя искусства?</h3>
-            <p className="mt-2 font-body text-ink/70 dark:text-parchment/70">
+            <p className="mt-2 font-body text-ink/70 dark:text-parchment/80">
               Пройдите короткий квиз из пяти вопросов — и узнайте, какие работы откликнутся именно вам.
             </p>
           </div>
           <Link
             href="/quiz"
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 bg-[length:200%_auto] px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-graphite shadow-gold transition-all duration-500 hover:bg-right"
+            className="relative inline-flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 bg-[length:200%_auto] px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-graphite shadow-gold transition-all duration-500 hover:bg-right"
           >
             Пройти квиз <ArrowRight size={16} />
           </Link>
@@ -119,15 +128,21 @@ export default function HomePage() {
             src="/images/cta-scene-light.png"
             alt=""
             fill
-            className="object-cover [mask-image:linear-gradient(to_bottom,transparent,black_22%)] dark:hidden"
+            className="object-cover dark:hidden"
           />
           <Image
             src="/images/cta-scene-dark.png"
             alt=""
             fill
-            className="hidden object-cover [mask-image:linear-gradient(to_bottom,transparent,black_22%)] dark:block"
+            className="hidden object-cover dark:block"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-ivory/60 via-ivory/10 to-transparent dark:from-graphite/70 dark:via-graphite/20 dark:to-transparent" />
+          {/* Мягкий переход сверху, чтобы фон не обрывался резко на границе с блоком квиза */}
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ivory to-transparent dark:from-graphite" />
+        </div>
+
+        <div className="pointer-events-none absolute left-6 top-10 w-24 -rotate-12 opacity-70 sm:w-32 lg:left-14">
+          <Image src="/images/deco-laurel-branch.png" alt="" width={294} height={284} className="w-full" />
         </div>
 
         <AnimatedReveal effect="scale" className="relative mx-auto max-w-3xl text-center">
